@@ -170,9 +170,7 @@ class SnapshotModule(object):
                 ]
             )
             snapshot_file.write(
-                """# -*- coding: utf-8 -*-
-# snapshottest: v1 - https://goo.gl/zC4yUc
-from __future__ import unicode_literals
+                """# snapshottest: v1 - https://goo.gl/zC4yUc
 
 {}
 

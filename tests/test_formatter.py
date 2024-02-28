@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import unittest.mock
 from math import isnan
 
