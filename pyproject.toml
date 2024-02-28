@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "snapshottest"
+version = "1.0.0a0"
+description = "Snapshot testing for pytest, unittest, Django, and Nose"
+authors = ["thelabnyc <thelabdev@thelabnyc.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://gitlab.com/thelabnyc/snapshottest"
+repository = "https://gitlab.com/thelabnyc/snapshottest"
+documentation = "https://gitlab.com/thelabnyc/snapshottest"
+packages = [
+    { include = "snapshottest" },
+]
+
+[tool.poetry.plugins]
+[tool.poetry.plugins.pytest11]
+snapshottest = "snapshottest.pytest"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+termcolor = "*"
+fastdiff = ">=0.1.4,<1"
+pytest = { version = ">=4.6", optional = true }
+nose2 = { version = "*", optional = true }
+
+[tool.poetry.extras]
+pytest = ["pytest"]
+nose2 = ["nose2"]
+
+[tool.poetry.group.dev.dependencies]
+tox = "^4.13.0"
+pytest = ">=4.6"
+pytest-cov = "*"
+nose2 = "*"
+django = ">=1.10.6"
+flake8 = "^7.0.0"
+black = "^24.2.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
