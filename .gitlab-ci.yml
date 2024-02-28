@@ -1,0 +1,87 @@
+stages:
+  - lint
+  - test
+  - release
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  POETRY_CACHE_DIR: "$CI_PROJECT_DIR/.cache/poetry"
+  PYIMAGE: py311
+
+.rules_mrs_and_protected:
+  - if: $CI_PIPELINE_SOURCE == "schedule"
+    when: never
+  - if: $CI_COMMIT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true"
+  - if: $CI_COMMIT_TAG && $CI_COMMIT_REF_PROTECTED == "true"
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+
+.rules_only_mrs:
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+
+.rules_only_master:
+  - if: $CI_PIPELINE_SOURCE == "schedule"
+    when: never
+  - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true"
+
+.rules_only_protected_tags:
+  - if: $CI_COMMIT_TAG && $CI_COMMIT_REF_PROTECTED == "true"
+
+.needs_all_tests:
+  - precommit
+  - test
+
+.base_job: &base_job
+  image: "registry.gitlab.com/thelabnyc/python:${PYIMAGE}"
+
+.dev_dependency_job: &dev_dependency_job
+  <<: *base_job
+  before_script:
+    # Setup Poetry to allow caching between jobs
+    - poetry config cache-dir $POETRY_CACHE_DIR
+    - poetry config virtualenvs.create true
+    - poetry config virtualenvs.in-project true
+    # Install dependencies
+    - poetry install
+  cache:
+    key: devdependencies-${PYIMAGE}
+    paths:
+      - .cache/pip/
+      - .cache/poetry/
+      - .venv/
+
+.release_job: &release_job
+  rules:
+    - !reference [.rules_only_protected_tags]
+  stage: release
+  needs:
+    - !reference [.needs_all_tests]
+
+precommit:
+  rules:
+    - !reference [.rules_mrs_and_protected]
+  stage: lint
+  needs: []
+  image: registry.gitlab.com/thelabnyc/dind:latest
+  variables:
+    PRE_COMMIT_HOME: ${CI_PROJECT_DIR}/.cache/pre-commit
+  script:
+    - pip3 install pre-commit
+    - pre-commit run --all-files
+  cache:
+    paths:
+      - ${PRE_COMMIT_HOME}
+
+test:
+  <<: *dev_dependency_job
+  rules:
+    - !reference [.rules_mrs_and_protected]
+  stage: test
+  needs: []
+  parallel:
+    matrix:
+      - PYIMAGE: py310
+        TOX_SKIP_ENV: "^(?!py310-)"
+      - PYIMAGE: py311
+        TOX_SKIP_ENV: "^(?!py311-)"
+  script:
+    - poetry run tox

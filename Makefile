@@ -23,7 +23,7 @@ test:
 
 .PHONY: lint
 lint:
-	flake8
+	poetry run flake8
 
 .PHONY: clean
 clean:
