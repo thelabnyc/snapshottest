@@ -11,8 +11,11 @@ Snapshot testing is a way to test your APIs without writing actual test cases.
 
 ## Installation
 
-    $ pip install snapshottest
-
+```sh
+pip install \
+    --index-url https://gitlab.com/api/v4/projects/55393658/packages/pypi/simple \
+    snapshottest
+```
 
 ## Usage with unittest/nose
 
@@ -32,7 +35,7 @@ class APITestCase(TestCase):
 
 If you want to update the snapshots automatically you can use the `nosetests --snapshot-update`.
 
-Check the [Unittest example](https://github.com/syrusakbary/snapshottest/tree/master/examples/unittest).
+Check the [Unittest example](./examples/unittest/).
 
 ## Usage with pytest
 
@@ -49,7 +52,7 @@ def test_mything(snapshot):
 
 If you want to update the snapshots automatically you can use the `--snapshot-update` config.
 
-Check the [Pytest example](https://github.com/syrusakbary/snapshottest/tree/master/examples/pytest).
+Check the [Pytest example](./examples/pytest/).
 
 ## Usage with django
 Add to your settings:
@@ -67,7 +70,7 @@ class APITestCase(TestCase):
         self.assertMatchSnapshot(my_api_response)
 ```
 If you want to update the snapshots automatically you can use the `python manage.py test --snapshot-update`.
-Check the [Django example](https://github.com/syrusakbary/snapshottest/tree/master/examples/django_project).
+Check the [Django example](./examples/django_project/).
 
 ## Disabling terminal colors
 
@@ -130,9 +133,4 @@ Instead of rendering the graphical UI, which would require building the entire a
 
 ## License
 
-[MIT License](https://github.com/syrusakbary/snapshottest/blob/master/LICENSE)
-
-[![coveralls][coveralls-image]][coveralls-url]
-
-[coveralls-image]: https://coveralls.io/repos/syrusakbary/snapshottest/badge.svg?branch=master&service=github
-[coveralls-url]: https://coveralls.io/github/syrusakbary/snapshottest?branch=master
+[MIT License](./LICENSE)
