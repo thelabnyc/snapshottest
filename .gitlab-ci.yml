@@ -80,8 +80,8 @@ test:
   parallel:
     matrix:
       - PYIMAGE: py310
-        TOX_SKIP_ENV: "^(?!py310-)"
+        TOX_SKIP_ENV: "^(?!py310)"
       - PYIMAGE: py311
-        TOX_SKIP_ENV: "^(?!py311-)"
+        TOX_SKIP_ENV: "^(?!py311)"
   script:
     - poetry run tox
