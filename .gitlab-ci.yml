@@ -83,5 +83,7 @@ test:
         TOX_SKIP_ENV: "^(?!py310)"
       - PYIMAGE: py311
         TOX_SKIP_ENV: "^(?!py311)"
+      - PYIMAGE: py312
+        TOX_SKIP_ENV: "^(?!py312)"
   script:
     - poetry run tox
