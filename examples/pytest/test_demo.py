@@ -18,7 +18,7 @@ def test_me_endpoint(snapshot):
 
 def test_unicode(snapshot):
     """Simple test with unicode"""
-    expect = u"pépère"
+    expect = "pépère"
     snapshot.assert_match(expect)
 
 
