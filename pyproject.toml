@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "snapshottest"
-version = "1.0.0a0"
+version = "0.7.0+thelabnyc"
 description = "Snapshot testing for pytest, unittest, Django, and Nose"
 authors = ["thelabnyc <thelabdev@thelabnyc.com>"]
 license = "MIT"
