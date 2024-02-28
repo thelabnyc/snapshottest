@@ -10,7 +10,7 @@ install:
 .PHONY: test
 test:
 # Run Pytest tests (including examples)
-	poetry run py.test --cov=snapshottest tests examples/pytest
+	poetry run py.test tests examples/pytest
 
 # Run Unittest Example
 	poetry run python examples/unittest/test_demo.py
