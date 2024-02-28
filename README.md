@@ -1,10 +1,7 @@
-# SnapshotTest [![travis][travis-image]][travis-url] [![pypi][pypi-image]][pypi-url]
+# SnapshotTest
 
-[travis-image]: https://img.shields.io/travis/syrusakbary/snapshottest.svg?style=flat
-[travis-url]: https://travis-ci.org/syrusakbary/snapshottest
-[pypi-image]: https://img.shields.io/pypi/v/snapshottest.svg?style=flat
-[pypi-url]: https://pypi.python.org/pypi/snapshottest
-
+[![Latest Release](https://gitlab.com/thelabnyc/snapshottest/-/badges/release.svg)](https://gitlab.com/thelabnyc/snapshottest/-/releases)
+[![pipeline status](https://gitlab.com/thelabnyc/snapshottest/badges/master/pipeline.svg)](https://gitlab.com/thelabnyc/snapshottest/-/commits/master)
 
 Snapshot testing is a way to test your APIs without writing actual test cases.
 
