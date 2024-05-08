@@ -2,7 +2,7 @@
 name = "snapshottest"
 version = "0.7.0+thelabnyc"
 description = "Snapshot testing for pytest, unittest, Django, and Nose"
-authors = ["thelabnyc <thelabdev@thelabnyc.com>"]
+authors = ["thelab <thelabdev@thelab.co>"]
 license = "MIT"
 readme = "README.md"
 homepage = "https://gitlab.com/thelabnyc/snapshottest"
