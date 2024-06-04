@@ -304,13 +304,13 @@ files = [
 
 [[package]]
 name = "nose2"
-version = "0.15.0"
+version = "0.15.1"
 description = "unittest with plugins"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "nose2-0.15.0-py3-none-any.whl", hash = "sha256:040cba8ffe55e72424ad0810ce9dfc49a3ebedb9a219aae8688b0c25a099abe4"},
-    {file = "nose2-0.15.0.tar.gz", hash = "sha256:0f7972710817a10aec1aae81ac51783c07dbb6bbb8e595a88c51b6163fe8d0f4"},
+    {file = "nose2-0.15.1-py3-none-any.whl", hash = "sha256:564450c0c4f1602dfe171902ceb4726cc56658af7a620ae1826f1ffc86b09a86"},
+    {file = "nose2-0.15.1.tar.gz", hash = "sha256:36770f519df5becd3cbfe0bee4abbfbf9b9f6b4eb4e03361d282b7efcfc4f0df"},
 ]
 
 [package.extras]
