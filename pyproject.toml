@@ -33,7 +33,7 @@ pytest = ">=4.6"
 pytest-cov = "*"
 nose2 = "*"
 django = ">=5.0.6"
-flake8 = "^7.0.0"
+flake8 = "^7.1.0"
 black = "^24.4.2"
 
 [build-system]
