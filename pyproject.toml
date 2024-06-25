@@ -28,7 +28,7 @@ pytest = ["pytest"]
 nose2 = ["nose2"]
 
 [tool.poetry.group.dev.dependencies]
-tox = "^4.13.0"
+tox = "^4.15.1"
 pytest = ">=8.2.2"
 pytest-cov = "*"
 nose2 = "*"
