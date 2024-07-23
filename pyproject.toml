@@ -20,7 +20,7 @@ snapshottest = "snapshottest.pytest"
 python = "^3.10"
 termcolor = "*"
 fastdiff = ">=0.3.0,<1"
-pytest = { version = ">=8.2.2", optional = true }
+pytest = { version = ">=8.3.1", optional = true }
 nose2 = { version = "*", optional = true }
 
 [tool.poetry.extras]
@@ -29,7 +29,7 @@ nose2 = ["nose2"]
 
 [tool.poetry.group.dev.dependencies]
 tox = "^4.16.0"
-pytest = ">=8.2.2"
+pytest = ">=8.3.1"
 pytest-cov = "*"
 nose2 = "*"
 django = ">=4.2"
