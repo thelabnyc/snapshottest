@@ -1,82 +1,19 @@
 stages:
-  - lint
   - test
   - release
 
-variables:
-  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
-  POETRY_CACHE_DIR: "$CI_PROJECT_DIR/.cache/poetry"
-  PYIMAGE: py311
+services: []
 
-.rules_mrs_and_protected:
-  - if: $CI_PIPELINE_SOURCE == "schedule"
-    when: never
-  - if: $CI_COMMIT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true"
-  - if: $CI_COMMIT_TAG && $CI_COMMIT_REF_PROTECTED == "true"
-  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-
-.rules_only_mrs:
-  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-
-.rules_only_master:
-  - if: $CI_PIPELINE_SOURCE == "schedule"
-    when: never
-  - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true"
-
-.rules_only_protected_tags:
-  - if: $CI_COMMIT_TAG && $CI_COMMIT_REF_PROTECTED == "true"
-
-.needs_all_tests:
-  - precommit
-  - test
-
-.base_job: &base_job
-  image: "registry.gitlab.com/thelabnyc/python:${PYIMAGE}"
-
-.dev_dependency_job: &dev_dependency_job
-  <<: *base_job
-  before_script:
-    # Setup Poetry to allow caching between jobs
-    - poetry config cache-dir $POETRY_CACHE_DIR
-    - poetry config virtualenvs.create true
-    - poetry config virtualenvs.in-project true
-    # Install dependencies
-    - poetry install
-  cache:
-    key: devdependencies-${PYIMAGE}
-    paths:
-      - .cache/pip/
-      - .cache/poetry/
-      - .venv/
-
-.release_job: &release_job
-  rules:
-    - !reference [.rules_only_protected_tags]
-  stage: release
-  needs:
-    - !reference [.needs_all_tests]
-
-precommit:
-  rules:
-    - !reference [.rules_mrs_and_protected]
-  stage: lint
-  needs: []
-  image: registry.gitlab.com/thelabnyc/dind:latest
-  variables:
-    PRE_COMMIT_HOME: ${CI_PROJECT_DIR}/.cache/pre-commit
-  script:
-    - pip3 install pre-commit
-    - pre-commit run --all-files
-  cache:
-    paths:
-      - ${PRE_COMMIT_HOME}
+include:
+  - component: gitlab.com/thelabnyc/thelab-ci-components/precommit@0.1.2
+  - component: gitlab.com/thelabnyc/thelab-ci-components/publish-gitlab-release@0.1.2
 
 test:
-  <<: *dev_dependency_job
-  rules:
-    - !reference [.rules_mrs_and_protected]
   stage: test
-  needs: []
+  image: "registry.gitlab.com/thelabnyc/python:${PYIMAGE}"
+  script:
+    - pip install tox
+    - tox
   parallel:
     matrix:
       - PYIMAGE: py310
@@ -85,12 +22,15 @@ test:
         TOX_SKIP_ENV: "^(?!py311)"
       - PYIMAGE: py312
         TOX_SKIP_ENV: "^(?!py312)"
-  script:
-    - poetry run tox
 
-release:pkg:
-  <<: *base_job
-  <<: *release_job
+publish-to-pypi:
+  stage: release
+  image: registry.gitlab.com/thelabnyc/python:py312
+  rules:
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_REF_PROTECTED
+  environment:
+    name: release
+    deployment_tier: production
   script:
     - pip install twine
     # Build package
@@ -101,14 +41,3 @@ release:pkg:
     - python -m twine upload
       --repository-url https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/pypi
       dist/*
-
-release:gitlab:
-  <<: *release_job
-  image: registry.gitlab.com/gitlab-org/release-cli:latest
-  script:
-    - echo 'noop'
-  release:
-    name: "Release $CI_COMMIT_TAG"
-    description: "Release $CI_COMMIT_TAG. Tagged by $GITLAB_USER_LOGIN"
-    tag_name: "$CI_COMMIT_TAG"
-    ref: "$CI_COMMIT_TAG"
