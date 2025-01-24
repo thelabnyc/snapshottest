@@ -5,8 +5,8 @@ stages:
 services: []
 
 include:
-  - component: gitlab.com/thelabnyc/thelab-ci-components/precommit@0.3.0
-  - component: gitlab.com/thelabnyc/thelab-ci-components/publish-gitlab-release@0.3.0
+  - component: gitlab.com/thelabnyc/thelab-ci-components/precommit@0.3.1
+  - component: gitlab.com/thelabnyc/thelab-ci-components/publish-gitlab-release@0.3.1
 
 test:
   stage: test
