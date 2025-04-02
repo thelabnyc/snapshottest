@@ -10,18 +10,18 @@ include:
 
 test:
   stage: test
-  image: "registry.gitlab.com/thelabnyc/python:${PYIMAGE}"
+  image: "registry.gitlab.com/thelabnyc/python:${IMAGE}"
   script:
     - pip install tox
     - tox
   parallel:
     matrix:
-      - PYIMAGE: py310
-        TOX_SKIP_ENV: "^(?!py310)"
-      - PYIMAGE: py311
+      - IMAGE: py311
         TOX_SKIP_ENV: "^(?!py311)"
-      - PYIMAGE: py312
+      - IMAGE: py312
         TOX_SKIP_ENV: "^(?!py312)"
+      - IMAGE: py313
+        TOX_SKIP_ENV: "^(?!py313)"
 
 publish-to-pypi:
   stage: release
