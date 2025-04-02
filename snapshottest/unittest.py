@@ -13,7 +13,7 @@ class UnitTestSnapshotTest(SnapshotTest):
         self.test_filepath = test_filepath
         self.assertEqual = assertEqual
         self.should_update = should_update
-        super(UnitTestSnapshotTest, self).__init__()
+        super().__init__()
 
     @property
     def module(self):
@@ -30,7 +30,7 @@ class UnitTestSnapshotTest(SnapshotTest):
     def test_name(self):
         class_name = self.test_class.__name__
         test_name = self.test_id.split(".")[-1]
-        return "{}::{} {}".format(class_name, test_name, self.curr_snapshot)
+        return f"{class_name}::{test_name} {self.curr_snapshot}"
 
 
 # Inspired by https://gist.github.com/twolfson/13f5f5784f67fd49b245
@@ -59,7 +59,7 @@ class TestCase(unittest.TestCase):
             cls.setUp = setUpOverride
             cls.tearDown = tearDownOverride
 
-        super(TestCase, cls).setUpClass()
+        super().setUpClass()
 
     def comparePrettyDifs(self, obj1, obj2, msg):
         # self
@@ -73,7 +73,7 @@ class TestCase(unittest.TestCase):
         if cls._snapshot_tests:
             module = SnapshotModule.get_module_for_testpath(cls._snapshot_file)
             module.save()
-        super(TestCase, cls).tearDownClass()
+        super().tearDownClass()
 
     def setUp(self):
         """Do some custom setup"""

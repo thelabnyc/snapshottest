@@ -21,12 +21,12 @@ def test_unicode(snapshot):
     snapshot.assert_match(expect)
 
 
-class SomeObject(object):
+class SomeObject:
     def __init__(self, value):
         self.value = value
 
     def __repr__(self):
-        return "SomeObject({})".format(repr(self.value))
+        return f"SomeObject({repr(self.value)})"
 
 
 def test_object(snapshot):
@@ -64,7 +64,7 @@ def test_multiple_files(snapshot, tmpdir):
     snapshot.assert_match(FileSnapshot(str(temp_file1)))
 
 
-class ObjectWithBadRepr(object):
+class ObjectWithBadRepr:
     def __repr__(self):
         return "#"
 
@@ -76,7 +76,7 @@ def test_nested_objects(snapshot):
     defaultdict_ = defaultdict(list, [("key", [obj])])
     list_ = [obj]
     tuple_ = (obj,)
-    set_ = set((obj,))
+    set_ = {obj}
     frozenset_ = frozenset((obj,))
 
     snapshot.assert_match(dict_, "dict")

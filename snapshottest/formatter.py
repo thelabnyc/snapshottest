@@ -1,7 +1,7 @@
 from .formatters import default_formatters
 
 
-class Formatter(object):
+class Formatter:
     formatters = default_formatters()
 
     def __init__(self, imports=None):

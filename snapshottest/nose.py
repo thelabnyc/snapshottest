@@ -18,7 +18,7 @@ class SnapshotTestPlugin(Plugin):
     separator2 = "-" * 70
 
     def options(self, parser, env=os.environ):
-        super(SnapshotTestPlugin, self).options(parser, env=env)
+        super().options(parser, env=env)
         parser.add_option(
             "--snapshot-update",
             action="store_true",
@@ -35,7 +35,7 @@ class SnapshotTestPlugin(Plugin):
         )
 
     def configure(self, options, conf):
-        super(SnapshotTestPlugin, self).configure(options, conf)
+        super().configure(options, conf)
         self.snapshot_update = options.snapshot_update
         self.enabled = not options.snapshot_disable
 

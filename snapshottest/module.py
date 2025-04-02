@@ -39,7 +39,7 @@ def _load_source(module_name, filepath):
     return module
 
 
-class SnapshotModule(object):
+class SnapshotModule:
     _snapshot_modules = {}
 
     def __init__(self, module, filepath):
@@ -57,7 +57,7 @@ class SnapshotModule(object):
         try:
             source = _load_source(self.module, self.filepath)
         # except FileNotFoundError:  # Python 3
-        except (IOError, OSError) as err:
+        except OSError as err:
             if err.errno == errno.ENOENT:
                 return Snapshot()
             else:
@@ -168,7 +168,7 @@ class SnapshotModule(object):
         # Create the snapshot dir in case doesn't exist
         try:
             os.makedirs(self.snapshot_dir, 0o0700)
-        except (IOError, OSError):
+        except OSError:
             pass
 
         # Create __init__.py in case doesn't exist
@@ -216,7 +216,7 @@ snapshots = Snapshot()
                 os.path.splitext(os.path.basename(test_filepath))[0]
             )
             snapshot_filename = os.path.join(snapshot_dir, snapshot_basename)
-            snapshot_module = "{}".format(os.path.splitext(snapshot_basename)[0])
+            snapshot_module = f"{os.path.splitext(snapshot_basename)[0]}"
 
             cls._snapshot_modules[test_filepath] = SnapshotModule(
                 snapshot_module, snapshot_filename
@@ -225,7 +225,7 @@ snapshots = Snapshot()
         return cls._snapshot_modules[test_filepath]
 
 
-class SnapshotTest(object):
+class SnapshotTest:
     _current_tester = None
 
     def __init__(self):

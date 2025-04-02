@@ -8,17 +8,17 @@ from .module import SnapshotModule
 from .unittest import TestCase as uTestCase
 
 
-class TestRunnerMixin(object):
+class TestRunnerMixin:
     separator1 = "=" * 70
     separator2 = "-" * 70
 
     def __init__(self, snapshot_update=False, **kwargs):
-        super(TestRunnerMixin, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         uTestCase.snapshot_should_update = snapshot_update
 
     @classmethod
     def add_arguments(cls, parser):
-        super(TestRunnerMixin, cls).add_arguments(parser)
+        super().add_arguments(parser)
         parser.add_argument(
             "--snapshot-update",
             default=False,
@@ -28,7 +28,7 @@ class TestRunnerMixin(object):
         )
 
     def run_tests(self, test_labels, extra_tests=None, **kwargs):
-        result = super(TestRunnerMixin, self).run_tests(
+        result = super().run_tests(
             test_labels=test_labels, extra_tests=extra_tests, **kwargs
         )
         self.print_report()
