@@ -4,7 +4,7 @@ from snapshottest import Snapshot
 from snapshottest.module import SnapshotModule
 
 
-class TestSnapshotModuleLoading(object):
+class TestSnapshotModuleLoading:
     def test_load_not_yet_saved(self, tmpdir):
         filepath = tmpdir.join("snap_new.py")
         assert not filepath.check()  # file does not exist

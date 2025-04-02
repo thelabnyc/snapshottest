@@ -6,7 +6,7 @@ from .formatter import Formatter
 from .formatters import BaseFormatter
 
 
-class FileSnapshot(object):
+class FileSnapshot:
     def __init__(self, path):
         """
         Create a file snapshot pointing to the specified `path`. In a snapshot, `path`
@@ -16,7 +16,7 @@ class FileSnapshot(object):
         self.path = path
 
     def __repr__(self):
-        return "FileSnapshot({})".format(repr(self.path))
+        return f"FileSnapshot({repr(self.path)})"
 
     def __eq__(self, other):
         return self.path == other.path

@@ -3,7 +3,7 @@ from collections import OrderedDict
 
 class SortedDict(OrderedDict):
     def __init__(self, values):
-        super(SortedDict, self).__init__()
+        super().__init__()
 
         try:
             sorted_items = sorted(values.items())

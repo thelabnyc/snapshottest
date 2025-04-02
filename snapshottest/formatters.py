@@ -5,7 +5,7 @@ from .generic_repr import GenericRepr
 from .sorted_dict import SortedDict
 
 
-class BaseFormatter(object):
+class BaseFormatter:
     def can_format(self, value):
         raise NotImplementedError()
 
@@ -63,7 +63,7 @@ def trepr(s):
             text = text.replace(quotes, "\\'\\'\\'")
         else:
             quotes = dquotes
-    return "%s%s%s" % (quotes, text, quotes)
+    return f"{quotes}{text}{quotes}"
 
 
 def format_none(value, indent, formatter):
@@ -118,7 +118,7 @@ def format_sequence(value, indent, formatter):
 
 
 def format_tuple(value, indent, formatter):
-    return "(%s%s" % (
+    return "({}{}".format(
         format_sequence(value, indent, formatter),
         ",)" if len(value) == 1 else ")",
     )

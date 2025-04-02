@@ -17,7 +17,7 @@ def format_line(line):
     return colored("") + colored(line, "white", attrs=["dark"])
 
 
-class PrettyDiff(object):
+class PrettyDiff:
     def __init__(self, obj, snapshottest):
         self.pretty = Formatter()
         self.snapshottest = snapshottest

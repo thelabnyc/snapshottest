@@ -14,7 +14,7 @@ class GenericSnapshotTest(SnapshotTest):
             "update": update,
             "current_test_id": current_test_id or "test_mocked",
         }
-        super(GenericSnapshotTest, self).__init__()
+        super().__init__()
 
     @property
     def module(self):
@@ -32,7 +32,7 @@ class GenericSnapshotTest(SnapshotTest):
 
     def reinitialize(self):
         """Reset internal state, as though starting a new test run"""
-        super(GenericSnapshotTest, self).__init__()
+        super().__init__()
 
 
 def assert_snapshot_test_ran(snapshot_test, test_name=None):
@@ -105,7 +105,7 @@ def test_snapshot_matches_itself(snapshot_test, value):
         pytest.param(
             value,
             other_value,
-            id="snapshot {!r} shouldn't match {!r}".format(value, other_value),
+            id=f"snapshot {value!r} shouldn't match {other_value!r}",
         )
         for value in SNAPSHOTABLE_VALUES
         for other_value in SNAPSHOTABLE_VALUES

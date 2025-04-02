@@ -1,9 +1,9 @@
-class GenericRepr(object):
+class GenericRepr:
     def __init__(self, representation):
         self.representation = representation
 
     def __repr__(self):
-        return "GenericRepr({})".format(repr(self.representation))
+        return f"GenericRepr({repr(self.representation)})"
 
     def __eq__(self, other):
         return (

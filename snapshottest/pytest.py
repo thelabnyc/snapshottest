@@ -27,7 +27,7 @@ def pytest_addoption(parser):
 class PyTestSnapshotTest(SnapshotTest):
     def __init__(self, request=None):
         self.request = request
-        super(PyTestSnapshotTest, self).__init__()
+        super().__init__()
 
     @property
     def module(self):
@@ -44,13 +44,13 @@ class PyTestSnapshotTest(SnapshotTest):
             r"\s+", " ", self.request.node.name.replace(r"\n", " ")
         )
         return "{}{} {}".format(
-            "{}.".format(cls_name) if cls_name else "",
+            f"{cls_name}." if cls_name else "",
             flattened_node_name,
             self.curr_snapshot,
         )
 
 
-class SnapshotSession(object):
+class SnapshotSession:
     def __init__(self, config):
         self.verbose = config.getoption("snapshot_verbose")
         self.config = config
