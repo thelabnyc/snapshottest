@@ -5,25 +5,25 @@ develop: install
 
 .PHONY: install
 install:
-	poetry install
+	uv sync
 
 .PHONY: test
 test:
 # Run Pytest tests (including examples)
-	poetry run py.test tests examples/pytest
+	uv run py.test tests examples/pytest
 
 # Run Unittest Example
-	poetry run python examples/unittest/test_demo.py
+	uv run python examples/unittest/test_demo.py
 
 # Run nose2
-	poetry run nose2 examples.unittest
+	uv run nose2 examples.unittest
 
 # Run Django Example
-	cd examples/django_project && poetry run python manage.py test
+	cd examples/django_project && uv run python manage.py test
 
 .PHONY: lint
 lint:
-	poetry run flake8
+	uv run flake8
 
 .PHONY: clean
 clean:

@@ -1,41 +1,45 @@
-[tool.poetry]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
 name = "snapshottest"
 version = "0.7.0+thelabnyc"
 description = "Snapshot testing for pytest, unittest, Django, and Nose"
-authors = ["thelab <thelabdev@thelab.co>"]
-license = "MIT"
 readme = "README.md"
-homepage = "https://gitlab.com/thelabnyc/snapshottest"
-repository = "https://gitlab.com/thelabnyc/snapshottest"
-documentation = "https://gitlab.com/thelabnyc/snapshottest"
-packages = [
-    { include = "snapshottest" },
-]
+dependencies = ["termcolor", "fastdiff (>=0.3.0,<1)"]
+requires-python = ">=3.11"
 
-[tool.poetry.plugins]
-[tool.poetry.plugins.pytest11]
-snapshottest = "snapshottest.pytest"
-
-[tool.poetry.dependencies]
-python = "^3.11"
-termcolor = "*"
-fastdiff = ">=0.3.0,<1"
-pytest = { version = ">=8.3.5", optional = true }
-nose2 = { version = "*", optional = true }
-
-[tool.poetry.extras]
-pytest = ["pytest"]
+[project.optional-dependencies]
+pytest = ["pytest (>=8.3.5)"]
 nose2 = ["nose2"]
 
-[tool.poetry.group.dev.dependencies]
-tox = "4.27.0"
-pytest = "==8.4.1"
-pytest-cov = "6.2.1"
-nose2 = "0.15.1"
-django = "==5.2"
-flake8 = "7.3.0"
-black = "25.1.0"
+[project.license]
+text = "MIT"
 
-[build-system]
-requires = ["poetry-core>=2.1.2"]
-build-backend = "poetry.core.masonry.api"
+[[project.authors]]
+name = "thelab"
+email = "thelabdev@thelab.co"
+
+[project.urls]
+Homepage = "https://gitlab.com/thelabnyc/snapshottest"
+Repository = "https://gitlab.com/thelabnyc/snapshottest"
+Documentation = "https://gitlab.com/thelabnyc/snapshottest"
+
+[project.entry-points.pytest11]
+snapshottest = "snapshottest.pytest"
+
+[dependency-groups]
+dev = [
+    "tox==4.27.0",
+    "pytest (==8.4.1)",
+    "pytest-cov (==6.2.1)",
+    "nose2 (==0.15.1)",
+    "django (==5.2)",
+    "flake8 (==7.3.0)",
+    "black (==25.1.0)",
+    "tox-uv>=1.26.1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["snapshottest"]
