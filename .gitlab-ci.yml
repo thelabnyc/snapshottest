@@ -12,8 +12,8 @@ test:
   stage: test
   image: "registry.gitlab.com/thelabnyc/python:${IMAGE}"
   script:
-    - pip install tox
-    - tox
+    - uv sync
+    - uv run tox
   parallel:
     matrix:
       - IMAGE: py311
@@ -34,7 +34,7 @@ publish-to-pypi:
   script:
     - pip install twine
     # Build package
-    - poetry build
+    - uv build
     # Publish to Gitlab's package registry
     - export TWINE_USERNAME=gitlab-ci-token
     - export TWINE_PASSWORD=${CI_JOB_TOKEN}
