@@ -5,7 +5,7 @@ from snapshottest import Snapshot
 
 snapshots = Snapshot()
 
-snapshots['ListTest::test_uses_home_template 1'] = '''<html>
+snapshots["ListTest::test_uses_home_template 1"] = """<html>
     <title>Lists</title>
     <body>
       <table id="id_list_table">
@@ -16,4 +16,4 @@ snapshots['ListTest::test_uses_home_template 1'] = '''<html>
 
     </body>
 </html>
-'''
+"""

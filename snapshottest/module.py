@@ -201,9 +201,7 @@ class SnapshotModule:
 snapshots = Snapshot()
 
 {}
-""".format(
-                    imports, "\n\n".join(snapshots_declarations)
-                )
+""".format(imports, "\n\n".join(snapshots_declarations))
             )
 
     @classmethod

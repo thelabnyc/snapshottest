@@ -23,7 +23,8 @@ test:
 
 .PHONY: lint
 lint:
-	uv run flake8
+	uv run ruff check
+	uv run ruff format --check
 
 .PHONY: clean
 clean:
