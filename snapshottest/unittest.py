@@ -35,7 +35,6 @@ class UnitTestSnapshotTest(SnapshotTest):
 
 # Inspired by https://gist.github.com/twolfson/13f5f5784f67fd49b245
 class TestCase(unittest.TestCase):
-
     snapshot_should_update = False
 
     @classmethod
