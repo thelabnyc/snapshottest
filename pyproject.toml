@@ -31,7 +31,7 @@ snapshottest = "snapshottest.pytest"
 
 [dependency-groups]
 dev = [
-    "tox==4.28.0",
+    "tox==4.28.1",
     "pytest (==8.4.1)",
     "pytest-cov (==6.2.1)",
     "nose2 (==0.15.1)",
