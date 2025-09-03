@@ -43,5 +43,10 @@ dev = [
 [tool.hatch.build.targets.wheel]
 packages = ["snapshottest"]
 
+[[tool.uv.index]]
+name = "thelabnyc"
+url = "https://gitlab.com/api/v4/groups/269576/-/packages/pypi/simple"
+explicit = true
+
 [tool.ruff.lint.isort]
 from-first = true
