@@ -340,7 +340,7 @@ dev = [
     { name = "nose2", specifier = "==0.15.1" },
     { name = "pytest", specifier = "==8.4.2" },
     { name = "pytest-cov", specifier = "==6.3.0" },
-    { name = "ruff", specifier = ">=0.13.3" },
+    { name = "ruff", specifier = ">=0.14.0" },
     { name = "tox", specifier = "==4.31.0" },
     { name = "tox-uv", specifier = ">=1.28.0" },
 ]
