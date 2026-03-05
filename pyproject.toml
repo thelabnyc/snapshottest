@@ -37,7 +37,7 @@ dev = [
     "nose2 (==0.16.0)",
     "django (==5.2)",
     "ruff (>=0.15.4)",
-    "tox-uv>=1.33.0",
+    "tox-uv>=1.33.1",
 ]
 
 [tool.hatch.build.targets.wheel]
