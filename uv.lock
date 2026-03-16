@@ -357,7 +357,7 @@ dev = [
     { name = "pytest-cov", specifier = "==7.0.0" },
     { name = "ruff", specifier = ">=0.15.6" },
     { name = "tox", specifier = "==4.49.1" },
-    { name = "tox-uv", specifier = ">=1.33.3" },
+    { name = "tox-uv", specifier = ">=1.33.4" },
 ]
 
 [[package]]
