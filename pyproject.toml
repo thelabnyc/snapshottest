@@ -33,7 +33,7 @@ snapshottest = "snapshottest.pytest"
 dev = [
     "tox==4.50.3",
     "pytest (==9.0.2)",
-    "pytest-cov (==7.0.0)",
+    "pytest-cov (==7.1.0)",
     "nose2 (==0.16.0)",
     "django (==5.2)",
     "ruff (>=0.15.7)",
