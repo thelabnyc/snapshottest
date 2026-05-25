@@ -37,7 +37,7 @@ test:
 
 publish-to-pypi:
   stage: release
-  image: registry.gitlab.com/thelabnyc/python:3.14.1335@sha256:5d5275a8a69bbcaa3ff858d8201c199985ee6b85c8d05a1c9c58d056f2240df0
+  image: registry.gitlab.com/thelabnyc/python:3.14.1338@sha256:ffec4a4346c29efb891073411492115f111f13fe49acbec20a7f15e7947713d3
   rules:
     - if: $CI_COMMIT_TAG && $CI_COMMIT_REF_PROTECTED
   environment:
