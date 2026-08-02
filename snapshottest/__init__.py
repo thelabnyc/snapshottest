@@ -3,4 +3,4 @@ from .module import assert_match_snapshot
 from .snapshot import Snapshot
 from .unittest import TestCase
 
-__all__ = ["Snapshot", "GenericRepr", "assert_match_snapshot", "TestCase"]
+__all__ = ["GenericRepr", "Snapshot", "TestCase", "assert_match_snapshot"]

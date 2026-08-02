@@ -26,7 +26,7 @@ class SomeObject:
         self.value = value
 
     def __repr__(self):
-        return f"SomeObject({repr(self.value)})"
+        return f"SomeObject({self.value!r})"
 
 
 def test_object(snapshot):

@@ -1,12 +1,13 @@
+from collections import defaultdict
+from typing import ClassVar
 import codecs
 import errno
 import importlib.util
 import logging
 import os
 import sys
-from collections import defaultdict
 
-from .error import SnapshotNotFound
+from .error import SnapshotError, SnapshotNotFound
 from .formatter import Formatter
 from .snapshot import Snapshot
 
@@ -40,7 +41,7 @@ def _load_source(module_name, filepath):
 
 
 class SnapshotModule:
-    _snapshot_modules = {}
+    _snapshot_modules: ClassVar[dict] = {}
 
     def __init__(self, module, filepath):
         self._original_snapshot = None
@@ -178,9 +179,7 @@ class SnapshotModule:
 
         with codecs.open(self.filepath, "w", encoding="utf-8") as snapshot_file:
             snapshots_declarations = [
-                """snapshots['{}'] = {}""".format(
-                    _escape_quotes(key), pretty(self.snapshots[key])
-                )
+                f"""snapshots['{_escape_quotes(key)}'] = {pretty(self.snapshots[key])}"""
                 for key in sorted(self.snapshots.keys())
             ]
 
@@ -210,8 +209,8 @@ snapshots = Snapshot()
             dirname = os.path.dirname(test_filepath)
             snapshot_dir = os.path.join(dirname, "snapshots")
 
-            snapshot_basename = "snap_{}.py".format(
-                os.path.splitext(os.path.basename(test_filepath))[0]
+            snapshot_basename = (
+                f"snap_{os.path.splitext(os.path.basename(test_filepath))[0]}.py"
             )
             snapshot_filename = os.path.join(snapshot_dir, snapshot_basename)
             snapshot_module = f"{os.path.splitext(snapshot_basename)[0]}"
@@ -296,7 +295,7 @@ class SnapshotTest:
 
 def assert_match_snapshot(value, name=""):
     if not SnapshotTest._current_tester:
-        raise Exception(
+        raise SnapshotError(
             "You need to use assert_match_snapshot in the SnapshotTest context."
         )
 

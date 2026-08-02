@@ -4,8 +4,4 @@ class SnapshotError(Exception):
 
 class SnapshotNotFound(SnapshotError):
     def __init__(self, module, test_name):
-        super().__init__(
-            "Snapshot '{snapshot_id!s}' not found in {snapshot_file!s}".format(
-                snapshot_id=test_name, snapshot_file=module.filepath
-            )
-        )
+        super().__init__(f"Snapshot '{test_name!s}' not found in {module.filepath!s}")

@@ -16,7 +16,7 @@ class FileSnapshot:
         self.path = path
 
     def __repr__(self):
-        return f"FileSnapshot({repr(self.path)})"
+        return f"FileSnapshot({self.path!r})"
 
     def __eq__(self, other):
         return self.path == other.path

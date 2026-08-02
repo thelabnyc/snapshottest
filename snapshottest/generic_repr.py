@@ -3,7 +3,7 @@ class GenericRepr:
         self.representation = representation
 
     def __repr__(self):
-        return f"GenericRepr({repr(self.representation)})"
+        return f"GenericRepr({self.representation!r})"
 
     def __eq__(self, other):
         return (
