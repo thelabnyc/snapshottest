@@ -1,6 +1,6 @@
-from lists.models import List
-
 from snapshottest.django import TestCase
+
+from .models import List
 
 
 class ListTest(TestCase):

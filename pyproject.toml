@@ -48,5 +48,9 @@ name = "thelabnyc"
 url = "https://gitlab.com/api/v4/groups/269576/-/packages/pypi/simple"
 explicit = true
 
+[tool.isort]
+profile = "black"
+from_first = true
+
 [tool.ruff.lint.isort]
 from-first = true

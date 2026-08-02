@@ -74,10 +74,10 @@ SNAPSHOTABLE_VALUES = [
     False,
     "",
     b"",
-    dict(),
-    list(),
+    {},
+    [],
     set(),
-    tuple(),
+    (),
     0,
     0.0,
     # dict subclasses:

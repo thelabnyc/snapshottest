@@ -19,7 +19,7 @@ from snapshottest.sorted_dict import SortedDict
     ],
 )
 def test_sorted_dict(key, value):
-    dic = dict([(key, value)])
+    dic = {key: value}
     assert SortedDict(dic)[key] == value
 
 

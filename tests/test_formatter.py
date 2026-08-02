@@ -1,5 +1,5 @@
-import unittest.mock
 from math import isnan
+import unittest.mock
 
 import pytest
 

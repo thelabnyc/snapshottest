@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from lists.models import List
+
+from .models import List
 
 
 def home_page(request):

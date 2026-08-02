@@ -18,9 +18,7 @@ def reporting_lines(testing_cli):
             colored("{} snapshots written", "green", attrs=bold) + " in {} test suites."
         ).format(*new_snapshots)
     inspect_str = colored(
-        "Inspect your code or run with `{} --snapshot-update` to update them.".format(
-            testing_cli
-        ),
+        f"Inspect your code or run with `{testing_cli} --snapshot-update` to update them.",
         attrs=["dark"],
     )
     failed_snapshots = SnapshotModule.stats_failed_snapshots()
@@ -47,9 +45,7 @@ def diff_report(left, right):
         + colored("Received value", "red", attrs=["bold"])
         + colored(" does not match ", attrs=["bold"])
         + colored(
-            "stored snapshot `{}`".format(
-                left.snapshottest.test_name,
-            ),
+            f"stored snapshot `{left.snapshottest.test_name}`",
             "green",
             attrs=["bold"],
         )

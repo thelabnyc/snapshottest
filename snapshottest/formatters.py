@@ -1,5 +1,5 @@
-import math
 from collections import defaultdict
+import math
 
 from .generic_repr import GenericRepr
 from .sorted_dict import SortedDict
@@ -82,7 +82,7 @@ def format_str(value, indent, formatter):
 
 def format_float(value, indent, formatter):
     if math.isinf(value) or math.isnan(value):
-        return 'float("%s")' % repr(value)
+        return f'float("{value!r}")'
     return repr(value)
 
 
@@ -104,7 +104,7 @@ def format_dict(value, indent, formatter):
 
 
 def format_list(value, indent, formatter):
-    return "[%s]" % format_sequence(value, indent, formatter)
+    return f"[{format_sequence(value, indent, formatter)}]"
 
 
 def format_sequence(value, indent, formatter):
@@ -125,11 +125,11 @@ def format_tuple(value, indent, formatter):
 
 
 def format_set(value, indent, formatter):
-    return "set([%s])" % format_sequence(value, indent, formatter)
+    return f"set([{format_sequence(value, indent, formatter)}])"
 
 
 def format_frozenset(value, indent, formatter):
-    return "frozenset([%s])" % format_sequence(value, indent, formatter)
+    return f"frozenset([{format_sequence(value, indent, formatter)}])"
 
 
 class GenericFormatter(BaseFormatter):
