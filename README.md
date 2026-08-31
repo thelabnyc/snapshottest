@@ -22,15 +22,16 @@ pip install \
 ```python
 from snapshottest import TestCase
 
+
 class APITestCase(TestCase):
     def test_api_me(self):
         """Testing the API for /me"""
-        my_api_response = api.client.get('/me')
+        my_api_response = api.client.get("/me")
         self.assertMatchSnapshot(my_api_response)
 
         # Set custom snapshot name: `gpg_response`
-        my_gpg_response = api.client.get('/me?gpg_key')
-        self.assertMatchSnapshot(my_gpg_response, 'gpg_response')
+        my_gpg_response = api.client.get("/me?gpg_key")
+        self.assertMatchSnapshot(my_gpg_response, "gpg_response")
 ```
 
 If you want to update the snapshots automatically you can use the `nosetests --snapshot-update`.
@@ -42,12 +43,12 @@ Check the [Unittest example](./examples/unittest/).
 ```python
 def test_mything(snapshot):
     """Testing the API for /me"""
-    my_api_response = api.client.get('/me')
+    my_api_response = api.client.get("/me")
     snapshot.assert_match(my_api_response)
 
     # Set custom snapshot name: `gpg_response`
-    my_gpg_response = api.client.get('/me?gpg_key')
-    snapshot.assert_match(my_gpg_response, 'gpg_response')
+    my_gpg_response = api.client.get("/me?gpg_key")
+    snapshot.assert_match(my_gpg_response, "gpg_response")
 ```
 
 If you want to update the snapshots automatically you can use the `--snapshot-update` config.
@@ -57,16 +58,17 @@ Check the [Pytest example](./examples/pytest/).
 ## Usage with django
 Add to your settings:
 ```python
-TEST_RUNNER = 'snapshottest.django.TestRunner'
+TEST_RUNNER = "snapshottest.django.TestRunner"
 ```
 To create your snapshottest:
 ```python
 from snapshottest.django import TestCase
 
+
 class APITestCase(TestCase):
     def test_api_me(self):
         """Testing the API for /me"""
-        my_api_response = api.client.get('/me')
+        my_api_response = api.client.get("/me")
         self.assertMatchSnapshot(my_api_response)
 ```
 If you want to update the snapshots automatically you can use the `python manage.py test --snapshot-update`.
