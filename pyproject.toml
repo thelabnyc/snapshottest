@@ -31,13 +31,13 @@ snapshottest = "snapshottest.pytest"
 
 [dependency-groups]
 dev = [
-    "tox==4.65.2",
+    "tox==4.65.3",
     "pytest (==9.1.1)",
     "pytest-cov (==7.1.0)",
     "nose2 (==0.16.0)",
     "django (==5.2.18)",
     "ruff (>=0.17.0)",
-    "tox-uv>=1.36.1",
+    "tox-uv>=1.37.0",
 ]
 
 [tool.hatch.build.targets.wheel]
