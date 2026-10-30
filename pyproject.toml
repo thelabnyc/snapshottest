@@ -8,7 +8,7 @@ version = "0.7.0+thelabnyc"
 description = "Snapshot testing for pytest, unittest, Django, and Nose"
 readme = "README.md"
 dependencies = ["termcolor", "fastdiff (>=0.3.0,<1)"]
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 
 [project.optional-dependencies]
 pytest = ["pytest (>=9.1.1)"]
