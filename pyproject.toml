@@ -11,7 +11,7 @@ dependencies = ["termcolor", "fastdiff (>=0.3.0,<1)"]
 requires-python = ">=3.12"
 
 [project.optional-dependencies]
-pytest = ["pytest (>=9.1.1)"]
+pytest = ["pytest (>=9.2.0)"]
 nose2 = ["nose2"]
 
 [project.license]
@@ -32,7 +32,7 @@ snapshottest = "snapshottest.pytest"
 [dependency-groups]
 dev = [
     "tox==4.67.4",
-    "pytest (==9.1.1)",
+    "pytest (==9.2.0)",
     "pytest-cov (==7.1.0)",
     "nose2 (==0.16.0)",
     "django (==5.2.18)",
